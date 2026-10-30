@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple planner to organize study tasks and deadlines.">
+  <title>Student Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">✓</span> Student Planner</a>
+    <span class="date-label" id="todayLabel"></span>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+        <h1>Plan your day, <span>achieve your goals.</span></h1>
+        <p class="subtitle">Keep track of assignments, revision, and important deadlines.</p>
+      </div>
+      <div class="welcome-icon" aria-hidden="true">📚</div>
+    </section>
+
+    <section class="stats" aria-label="Task summary">
+      <article class="stat-card"><span class="stat-icon purple">☰</span><div><p>Total tasks</p><strong id="totalCount">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon orange">◷</span><div><p>Pending</p><strong id="pendingCount">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon green">✓</span><div><p>Completed</p><strong id="completedCount">0</strong></div></article>
+    </section>
+
+    <section class="planner-grid">
+      <section class="panel form-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">STAY ORGANIZED</p><h2 id="formTitle">Add a new task</h2></div>
+          <span class="heading-icon">＋</span>
+        </div>
+        <form id="taskForm">
+          <label for="taskTitle">Task name</label>
+          <input id="taskTitle" name="title" type="text" maxlength="80" placeholder="e.g. Revise Mathematics chapter 2" required>
+
+          <div class="form-row">
+            <div>
+              <label for="taskSubject">Subject</label>
+              <input id="taskSubject" name="subject" type="text" maxlength="40" placeholder="e.g. Mathematics">
+            </div>
+            <div>
+              <label for="taskDate">Due date</label>
+              <input id="taskDate" name="date" type="date" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="taskPriority">Priority</label>
+              <select id="taskPriority" name="priority">
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+            <div>
+              <label for="taskType">Task type</label>
+              <select id="taskType" name="type">
+                <option>Study</option>
+                <option>Assignment</option>
+                <option>Exam</option>
+                <option>Personal</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="primary-btn" id="submitBtn" type="submit">＋ Add task</button>
+            <button class="text-btn hidden" id="cancelEditBtn" type="button">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel tasks-panel">
+        <div class="tasks-heading">
+          <div><p class="eyebrow">YOUR SCHEDULE</p><h2>My tasks</h2></div>
+          <span class="task-total" id="listCount">0 tasks</span>
+        </div>
+        <div class="toolbar">
+          <input id="searchInput" type="search" placeholder="Search tasks..." aria-label="Search tasks">
+          <select id="filterSelect" aria-label="Filter tasks">
+            <option value="all">All tasks</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        <div id="taskList" class="task-list" aria-live="polite"></div>
+        <p id="emptyState" class="empty-state">✨ No tasks yet. Add your first task to get started!</p>
+      </section>
+    </section>
+    <footer>Made for better study habits · Your tasks are saved in this browser.</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
